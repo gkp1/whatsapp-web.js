@@ -1,7 +1,7 @@
 <div align="center">
     <br />
     <p>
-        <a href="https://wwebjs.dev"><img src="https://github.com/wwebjs/logos/blob/main/4_Full%20Logo%20Lockup_Small/small_banner_blue.png?raw=true" title="whatsapp-web.js" alt="WWebJS Website" width="500" /></a>
+        <a href="https://wwebjs.dev"><img src="https://github.com/wwebjs/assets/blob/main/6_Logo_Banner_Format/Mix/banner_green_green.png?raw=true" title="wwebjs.dev Guide" alt="wwebjs.dev Guide" width="500" /></a>
     </p>
     <br />
     <p>
@@ -34,7 +34,7 @@ The library works by launching the WhatsApp Web browser application and managing
 
 The module is now available on npm! `npm i whatsapp-web.js`
 
-Please note that Node v18+ is required.
+> [!NOTE] > **Node `v18+` is required.**
 
 ## QUICK STEPS TO UPGRADE NODE
 
@@ -42,7 +42,7 @@ Please note that Node v18+ is required.
 
 #### Manual
 
-Just get the latest LTS from https://nodejs.org
+Just get the latest LTS from the [official node website][nodejs].
 
 #### npm
 
@@ -178,7 +178,7 @@ limitations under the License.
 [nodejs]: https://nodejs.org/en/download/
 [examples]: https://github.com/pedroslopez/whatsapp-web.js/blob/master/example.js
 [auth-strategies]: https://wwebjs.dev/guide/creating-your-bot/authentication.html
-[google-chrome]: https://wwebjs.dev/guide/creating-your-bot/handling-attachments.html#caveat-for-sending-videos-and-gifs
+[google-chrome]: https://wwebjs.dev/guide/handling-attachments.html#caveat-for-sending-videos-and-gifs
 [deprecated-video]: https://www.youtube.com/watch?v=hv1R1rLeVVE
 [gitHub-sponsors]: https://github.com/sponsors/pedroslopez
 [support-payPal]: https://www.paypal.me/psla/
