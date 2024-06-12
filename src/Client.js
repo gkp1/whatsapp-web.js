@@ -957,7 +957,37 @@ class Client extends EventEmitter {
             window.Store.Chat.on("change:unreadCount", (chat) => {
                 window.onChatUnreadCountEvent(chat);
             });
-            {
+
+            if (
+                window.compareWwebVersions(
+                    window.Debug.VERSION,
+                    ">=",
+                    "2.3000.1014111620"
+                )
+            ) {
+                const module = window.Store.AddonReactionTable;
+                const ogMethod = module.bulkUpsert;
+                module.bulkUpsert = ((...args) => {
+                    window.onReaction(
+                        args[0].map((reaction) => {
+                            const msgKey = reaction.id;
+                            const parentMsgKey = reaction.reactionParentKey;
+                            const timestamp = reaction.reactionTimestamp / 1000;
+                            const senderUserJid = reaction.author._serialized;
+
+                            return {
+                                ...reaction,
+                                msgKey,
+                                parentMsgKey,
+                                senderUserJid,
+                                timestamp,
+                            };
+                        })
+                    );
+
+                    return ogMethod(...args);
+                }).bind(module);
+            } else {
                 const module = window.Store.createOrUpdateReactionsModule;
                 const ogMethod = module.createOrUpdateReactions;
                 module.createOrUpdateReactions = ((...args) => {
@@ -1536,7 +1566,7 @@ class Client extends EventEmitter {
         const profilePic = await this.pupPage.evaluate(async (contactId) => {
             try {
                 const chatWid = window.Store.WidFactory.createWid(contactId);
-                return window.WWebJS.compareWwebVersions(
+                return window.compareWwebVersions(
                     window.Debug.VERSION,
                     "<",
                     "2.3000.0"
@@ -1758,7 +1788,7 @@ class Client extends EventEmitter {
                                     createGroupResult.wid
                                 )
                             );
-                        isInviteV4Sent = window.WWebJS.compareWwebVersions(
+                        isInviteV4Sent = window.compareWwebVersions(
                             window.Debug.VERSION,
                             "<",
                             "2.2335.6"
